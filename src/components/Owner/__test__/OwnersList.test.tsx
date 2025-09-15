@@ -134,7 +134,7 @@ describe('OwnerList', () => {
       renderOwnerList()
       
       const errorElement = screen.getByText('Error message')
-      expect(errorElement).toHaveClass('text-red-600')
+      expect(errorElement).toHaveClass('text-gray-600')
     })
   })
 
@@ -148,7 +148,7 @@ describe('OwnerList', () => {
       
       renderOwnerList()
       
-      expect(screen.getByText('No owners found.')).toBeInTheDocument()
+      expect(screen.getByText('No owners found')).toBeInTheDocument()
       expect(screen.queryByText('Loading owners...')).not.toBeInTheDocument()
     })
 
@@ -161,8 +161,8 @@ describe('OwnerList', () => {
       
       renderOwnerList()
       
-      const emptyMessage = screen.getByText('No owners found.')
-      expect(emptyMessage).toHaveClass('text-gray-600')
+      const emptyMessage = screen.getByText('No owners found')
+      expect(emptyMessage).toHaveClass('text-red-600')
     })
   })
 

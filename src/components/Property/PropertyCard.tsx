@@ -2,12 +2,13 @@ import { MapPin, Calendar, User } from "lucide-react"
 import { ButtonComponent } from "../UI/Button/Button"
 import { formatDate, formatPrice } from "../helpers/helper"
 import type { PropertyCardProps } from "./types"
+import { HoverGesture } from "../UI/Animation/HoverGesture"
 
 /**
  * PropertyCard component displays a property in a card format
  * Shows property image, name, address, owner info, creation date, and price
  * Includes fallback for missing images and optional view details functionality
- * 
+ *
  * @param props - The property card props
  * @returns JSX property card element
  */
@@ -54,12 +55,14 @@ const PropertyCard = ({ property, onViewDetails }: PropertyCardProps) => {
         </div>
 
         {onViewDetails && (
-          <ButtonComponent
-            onClick={() => onViewDetails(property)}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200 font-medium"
-          >
-            View Details
-          </ButtonComponent>
+          <HoverGesture>
+            <ButtonComponent
+              onClick={() => onViewDetails(property)}
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-800 transition-colors duration-200 font-medium"
+            >
+              View Details
+            </ButtonComponent>
+          </HoverGesture>
         )}
       </div>
     </div>

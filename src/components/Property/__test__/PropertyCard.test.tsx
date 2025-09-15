@@ -255,7 +255,7 @@ describe("PropertyCard", () => {
         "py-2",
         "px-4",
         "rounded-md",
-        "hover:bg-blue-700",
+        "hover:bg-blue-800",
         "transition-colors",
         "duration-200",
         "font-medium"

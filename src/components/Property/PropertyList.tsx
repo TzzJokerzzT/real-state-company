@@ -1,6 +1,11 @@
-import { AlertCircle, Loader2 } from "lucide-react"
-import PropertyCard from "./PropertyCard"
+import { AlertCircle } from "lucide-react"
 import type { PropertyListProps } from "./types"
+import { lazy, Suspense } from "react"
+import { Loader } from "../UI/Loader/Loader"
+import { EnterAnimation } from "../UI/Animation/EnterAnimation"
+import { AppLayout } from "@/layout/AppLayout"
+import { MessagesLayout } from "@/layout/MessagesLayout"
+import PropertyCard from "./PropertyCard"
 
 export const PropertyList = ({
   properties,
@@ -8,32 +13,31 @@ export const PropertyList = ({
   error,
   onViewDetails
 }: PropertyListProps) => {
+  const proper = true
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">Loading properties...</p>
-        </div>
-      </div>
+      <MessagesLayout>
+        <Loader />
+        <p className="text-gray-600 text-md">Loading properties...</p>
+      </MessagesLayout>
     )
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center py-12">
+      <MessagesLayout>
         <div className="text-center">
           <AlertCircle className="w-8 h-8 text-red-500 mx-auto mb-4" />
           <p className="text-red-600 mb-2">Error loading properties</p>
           <p className="text-gray-600 text-sm">{error}</p>
         </div>
-      </div>
+      </MessagesLayout>
     )
   }
 
   if (properties.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
+      <MessagesLayout>
         <div className="text-center">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg
@@ -57,19 +61,21 @@ export const PropertyList = ({
             Try adjusting your search criteria or check back later.
           </p>
         </div>
-      </div>
+      </MessagesLayout>
     )
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <AppLayout>
       {properties.map(property => (
-        <PropertyCard
-          key={property.id}
-          property={property}
-          onViewDetails={onViewDetails}
-        />
+        <EnterAnimation key={property.id}>
+          <PropertyCard
+            key={property.id}
+            property={property}
+            onViewDetails={onViewDetails}
+          />
+        </EnterAnimation>
       ))}
-    </div>
+    </AppLayout>
   )
 }

@@ -5,12 +5,14 @@ import type { PropertyFilterDto } from "../../types/Property"
 import { ButtonComponent } from "../UI/Button/Button"
 import { InputComponent } from "../UI/Input/Input"
 import type { PropertyFilterProps } from "./types"
+import { HoverAnimation } from "../UI/Animation/HoverGesture"
+import { EnterAnimation } from "../UI/Animation/EnterAnimation"
 
 /**
  * PropertyFilter component provides filtering functionality for properties
  * Includes search by name, address, price range, and other criteria
  * Features expandable/collapsible interface and clear filters functionality
- * 
+ *
  * @param props - The property filter props
  * @returns JSX property filter element
  */
@@ -77,9 +79,11 @@ export const PropertyFilter = ({
           >
             {isExpanded ? "Less Filters" : "More Filters"}
           </ButtonComponent>
-          <ButtonComponent onClick={handlerNavigate}>
-            Owners List
-          </ButtonComponent>
+          <HoverAnimation>
+            <ButtonComponent onClick={handlerNavigate}>
+              Owners List
+            </ButtonComponent>
+          </HoverAnimation>
         </div>
       </div>
 
@@ -107,31 +111,37 @@ export const PropertyFilter = ({
 
         {isExpanded && (
           <>
-            <InputComponent
-              value={filters.minPrice || ""}
-              onChange={e => handleInputChange("minPrice", e.target.value)}
-              label="Min Price"
-              placeholder="Search by min price..."
-              type="number"
-            />
+            <EnterAnimation>
+              <InputComponent
+                value={filters.minPrice || ""}
+                onChange={e => handleInputChange("minPrice", e.target.value)}
+                label="Min Price"
+                placeholder="Search by min price..."
+                type="number"
+              />
+            </EnterAnimation>
 
-            <InputComponent
-              value={filters.maxPrice || ""}
-              onChange={e => handleInputChange("maxPrice", e.target.value)}
-              label="Max Price"
-              placeholder="Search by max price..."
-              type="number"
-            />
+            <EnterAnimation>
+              <InputComponent
+                value={filters.maxPrice || ""}
+                onChange={e => handleInputChange("maxPrice", e.target.value)}
+                label="Max Price"
+                placeholder="Search by max price..."
+                type="number"
+              />
+            </EnterAnimation>
           </>
         )}
       </div>
 
       <div className="flex items-center justify-between mt-6">
         <div className="flex items-center space-x-4">
-          <ButtonComponent isDisabled={loading} onClick={handleApplyFilter}>
-            <Search className="w-4 h-4 mr-2" />
-            {loading ? "Searching..." : "Search"}
-          </ButtonComponent>
+          <HoverAnimation>
+            <ButtonComponent isDisabled={loading} onClick={handleApplyFilter}>
+              <Search className="w-4 h-4 mr-2" />
+              {loading ? "Searching..." : "Search"}
+            </ButtonComponent>
+          </HoverAnimation>
 
           {hasActiveFilters && (
             <ButtonComponent

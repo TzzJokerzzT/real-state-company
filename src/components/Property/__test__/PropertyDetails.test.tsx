@@ -358,7 +358,9 @@ describe("PropertyDetails", () => {
         "border-gray-300",
         "text-gray-700",
         "rounded-md",
-        "hover:bg-gray-50",
+        "hover:bg-gray-100",
+        "shadow-lg",
+        "shadow-gray-100",
         "transition-colors",
         "duration-200"
       )

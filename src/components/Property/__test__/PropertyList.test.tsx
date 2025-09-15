@@ -108,15 +108,17 @@ describe("PropertyList", () => {
     it("renders loading state correctly", () => {
       renderPropertyList([], true)
 
-      expect(screen.getByTestId("loader2-icon")).toBeInTheDocument()
       expect(screen.getByText("Loading properties...")).toBeInTheDocument()
+      // Check for the custom loader component instead of loader2-icon
+      const loaderContainer = document.querySelector('.container')
+      expect(loaderContainer).toBeInTheDocument()
     })
 
     it("applies correct styling to loading container", () => {
       const { container } = renderPropertyList([], true)
 
       const loadingContainer = container.querySelector(
-        ".flex.items-center.justify-center.py-12"
+        ".min-h-\\[54vh\\].flex.flex-col.items-center.justify-center.bg-gray-50"
       )
       expect(loadingContainer).toBeInTheDocument()
     })
@@ -124,15 +126,16 @@ describe("PropertyList", () => {
     it("applies spinning animation to loader icon", () => {
       renderPropertyList([], true)
 
-      const loaderIcon = screen.getByTestId("loader2-icon")
-      expect(loaderIcon).toHaveClass("animate-spin", "text-blue-600")
+      // Check for the custom animated dots instead of loader2-icon
+      const dots = document.querySelectorAll('.dot')
+      expect(dots).toHaveLength(3)
     })
 
     it("centers loading content properly", () => {
       const { container } = renderPropertyList([], true)
 
-      const textCenter = container.querySelector(".text-center")
-      expect(textCenter).toBeInTheDocument()
+      const centerContainer = container.querySelector(".min-h-\\[54vh\\].flex.flex-col.items-center.justify-center")
+      expect(centerContainer).toBeInTheDocument()
     })
 
     it("does not render property cards when loading", () => {
@@ -215,7 +218,7 @@ describe("PropertyList", () => {
       const { container } = renderPropertyList([])
 
       const emptyContainer = container.querySelector(
-        ".flex.items-center.justify-center.py-12"
+        ".min-h-\\[54vh\\].flex.flex-col.items-center.justify-center.bg-gray-50"
       )
       expect(emptyContainer).toBeInTheDocument()
 

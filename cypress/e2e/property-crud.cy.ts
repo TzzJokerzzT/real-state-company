@@ -173,7 +173,7 @@ describe("Property API Integration E2E Tests", () => {
 
     cy.visit("/");
 
-    cy.get(".animate-spin", { timeout: 3000 }).should("be.visible");
+    cy.get(".container", { timeout: 3000 }).should("be.visible");
     cy.wait("@getPropertiesTimeout");
   });
 

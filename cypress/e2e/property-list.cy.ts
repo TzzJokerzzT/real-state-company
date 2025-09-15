@@ -166,11 +166,11 @@ describe("Property List E2E Tests", () => {
 
     cy.visit("/")
 
-    cy.get(".animate-spin").should("be.visible")
+    cy.get(".container").should("be.visible")
     cy.get("p").contains("Loading properties...").should("be.visible")
 
     cy.wait("@getPropertiesDelayed")
-    cy.get(".animate-spin").should("not.exist")
+    cy.get(".container").should("not.exist")
   })
 
   it("should handle API errors gracefully", () => {

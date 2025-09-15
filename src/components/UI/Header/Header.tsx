@@ -1,10 +1,10 @@
-import type { Pagination } from "@/store/types";
-import { Home, Search, Plus } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { ButtonComponent } from "../Button/Button";
+import type { Pagination } from "@/store/types"
+import { Home, Search, Plus } from "lucide-react"
+import { useNavigate } from "react-router-dom"
+import { ButtonComponent } from "../Button/Button"
 
 export const Header = ({ pagination }: { pagination: Pagination }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,7 +25,7 @@ export const Header = ({ pagination }: { pagination: Pagination }) => {
             </div>
             <ButtonComponent
               onClick={() => navigate("/register-property")}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-blue-600"
             >
               <Plus className="w-4 h-4" />
               Add Property
@@ -34,5 +34,5 @@ export const Header = ({ pagination }: { pagination: Pagination }) => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}

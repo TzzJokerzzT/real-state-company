@@ -3,6 +3,7 @@ import { Filter, Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { ButtonComponent } from "../UI/Button/Button"
 import { InputComponent } from "../UI/Input/Input"
+import { HoverAnimation } from "../UI/Animation/HoverGesture"
 
 const OwnerFilter = () => {
   const { fetchOwners, filterByName } = useOwners()
@@ -42,10 +43,12 @@ const OwnerFilter = () => {
 
       <div className="flex items-center justify-between mt-6">
         <div className="flex items-center space-x-4">
-          <ButtonComponent onClick={handleSearch}>
-            <Search className="w-4 h-4 mr-2" />
-            Search
-          </ButtonComponent>
+          <HoverAnimation>
+            <ButtonComponent onClick={handleSearch}>
+              <Search className="w-4 h-4 mr-2" />
+              Search
+            </ButtonComponent>
+          </HoverAnimation>
 
           {name && (
             <ButtonComponent

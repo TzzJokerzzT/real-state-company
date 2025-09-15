@@ -279,12 +279,10 @@ describe("Responsive Design E2E Tests", () => {
             pageSize: 12,
             totalPages: 0,
           },
-        }).as("getPropertiesDelayed");
-
-        cy.visit("/");
-        cy.get(".animate-spin").should("be.visible");
+        }).as("getPropertiesDelayed");        cy.visit("/");
+        cy.get(".container").should("be.visible");
         cy.wait("@getPropertiesDelayed");
-        cy.get(".animate-spin").should("not.exist");
+        cy.get(".container").should("not.exist");
       });
     });
   });
