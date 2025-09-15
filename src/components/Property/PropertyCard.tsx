@@ -3,6 +3,14 @@ import { ButtonComponent } from "../UI/Button/Button"
 import { formatDate, formatPrice } from "../helpers/helper"
 import type { PropertyCardProps } from "./types"
 
+/**
+ * PropertyCard component displays a property in a card format
+ * Shows property image, name, address, owner info, creation date, and price
+ * Includes fallback for missing images and optional view details functionality
+ * 
+ * @param props - The property card props
+ * @returns JSX property card element
+ */
 const PropertyCard = ({ property, onViewDetails }: PropertyCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">

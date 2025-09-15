@@ -6,6 +6,14 @@ import { ButtonComponent } from "../UI/Button/Button"
 import { InputComponent } from "../UI/Input/Input"
 import type { PropertyFilterProps } from "./types"
 
+/**
+ * PropertyFilter component provides filtering functionality for properties
+ * Includes search by name, address, price range, and other criteria
+ * Features expandable/collapsible interface and clear filters functionality
+ * 
+ * @param props - The property filter props
+ * @returns JSX property filter element
+ */
 export const PropertyFilter = ({
   onFilterChange,
   loading = false

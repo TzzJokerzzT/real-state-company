@@ -1,40 +1,40 @@
 # HTTPS Setup for Real Estate API
 
-Este documento explica cómo configurar HTTPS para el backend de la API de Real Estate.
+This document explains how to configure HTTPS for the Real Estate API backend.
 
-## Configuración Actual
+## Current Configuration
 
-El backend ahora está configurado para usar **solo HTTPS** en el puerto 7000:
+The backend is now configured to use **only HTTPS** on port 7000:
 
-- **URL del API**: `https://localhost:7000/api`
+- **API URL**: `https://localhost:7000/api`
 - **Swagger UI**: `https://localhost:7000/swagger`
-- **Frontend**: Configurado para usar HTTPS
+- **Frontend**: Configured to use HTTPS
 
-## Configuración de Seguridad Implementada
+## Implemented Security Configuration
 
 ### 1. Backend (ASP.NET Core)
 
-- ✅ Solo HTTPS (puerto 7000)
-- ✅ Redirección forzada a HTTPS
-- ✅ Headers de seguridad (X-Content-Type-Options, X-Frame-Options, etc.)
-- ✅ CORS configurado para HTTPS
-- ✅ Certificado de desarrollo configurado
+- ✅ HTTPS only (port 7000)
+- ✅ Forced redirection to HTTPS
+- ✅ Security headers (X-Content-Type-Options, X-Frame-Options, etc.)
+- ✅ CORS configured for HTTPS
+- ✅ Development certificate configured
 
 ### 2. Frontend (React + Vite)
 
-- ✅ Configurado para usar `https://localhost:7000/api`
-- ✅ Timeout configurado para mejor manejo de errores
+- ✅ Configured to use `https://localhost:7000/api`
+- ✅ Timeout configured for better error handling
 
-## Pasos para Ejecutar
+## Steps to Run
 
-### 1. Configurar Certificado de Desarrollo
+### 1. Configure Development Certificate
 
 ```bash
-# Ejecutar el script de configuración
+# Run the setup script
 ./setup-https.sh
 ```
 
-O manualmente:
+Or manually:
 
 ```bash
 cd backend/RealEstate.API
@@ -42,78 +42,78 @@ dotnet dev-certs https --clean
 dotnet dev-certs https --trust
 ```
 
-### 2. Ejecutar el Backend
+### 2. Run the Backend
 
 ```bash
 cd backend/RealEstate.API
 dotnet run
 ```
 
-### 3. Ejecutar el Frontend
+### 3. Run the Frontend
 
 ```bash
 npm run dev
 ```
 
-## Solución al Problema de "No Segura"
+## Solution to "Not Secure" Problem
 
-### Opción 1: Aceptar el Certificado (Recomendado para Desarrollo)
+### Option 1: Accept the Certificate (Recommended for Development)
 
-1. Abre `https://localhost:7000/swagger` en tu navegador
-2. Verás una advertencia de seguridad
-3. Haz clic en "Avanzado" o "Advanced"
-4. Haz clic en "Proceder a localhost (no seguro)" o "Proceed to localhost (unsafe)"
-5. El sitio se cargará correctamente
+1. Open `https://localhost:7000/swagger` in your browser
+2. You will see a security warning
+3. Click on "Advanced"
+4. Click on "Proceed to localhost (unsafe)"
+5. The site will load correctly
 
-### Opción 2: Crear un Certificado Válido (Para Producción)
+### Option 2: Create a Valid Certificate (For Production)
 
-Para un entorno de producción, necesitarías:
+For a production environment, you will need:
 
-1. Un certificado SSL válido de una CA confiable
-2. Configurar el dominio real
-3. Actualizar la configuración de CORS
+1. A valid SSL certificate from a trusted CA
+2. Configure the real domain
+3. Update the CORS configuration
 
-## Verificación
+## Verification
 
 ### Backend
 
-- ✅ `https://localhost:7000/swagger` - Debe cargar Swagger UI
-- ✅ `https://localhost:7000/api/properties` - Debe devolver datos JSON
+- ✅ `https://localhost:7000/swagger` - Swagger UI should load
+- ✅ `https://localhost:7000/api/properties` - Should return JSON data
 
 ### Frontend
 
-- ✅ `http://localhost:5173` - Debe cargar la aplicación React
-- ✅ Las llamadas a la API deben funcionar sin errores CORS
+- ✅ `http://localhost:5173` - The React app should load
+- ✅ API calls should work without CORS errors
 
 ## Troubleshooting
 
 ### Error: "ERR_CERT_AUTHORITY_INVALID"
 
-- **Solución**: Acepta el certificado como se describe en la Opción 1
+- **Solution**: Accept the certificate as described in Option 1
 
 ### Error: "ERR_CONNECTION_REFUSED"
 
-- **Solución**: Verifica que el backend esté ejecutándose en el puerto 7000
+- **Solution**: Make sure the backend is running on port 7000
 
-### Error de CORS
+### CORS Error
 
-- **Solución**: Verifica que el frontend esté ejecutándose en el puerto 5173
+- **Solution**: Make sure the frontend is running on port 5173
 
-## Archivos Modificados
+## Modified Files
 
-- `backend/RealEstate.API/Program.cs` - Configuración HTTPS y seguridad
-- `backend/RealEstate.API/appsettings.json` - Configuración Kestrel
-- `backend/RealEstate.API/appsettings.Development.json` - Configuración de desarrollo
-- `backend/RealEstate.API/Properties/launchSettings.json` - Configuración de lanzamiento
-- `src/services/api.ts` - Configuración del cliente API
-- `setup-https.sh` - Script de configuración automática
+- `backend/RealEstate.API/Program.cs` - HTTPS and security configuration
+- `backend/RealEstate.API/appsettings.json` - Kestrel configuration
+- `backend/RealEstate.API/appsettings.Development.json` - Development configuration
+- `backend/RealEstate.API/Properties/launchSettings.json` - Launch configuration
+- `src/services/api.ts` - API client configuration
+- `setup-https.sh` - Automatic setup script
 
-## Notas Importantes
+## Important Notes
 
-1. **Solo para Desarrollo**: Esta configuración es para desarrollo local. Para producción, usa certificados SSL válidos.
+1. **Development Only**: This configuration is for local development. For production, use valid SSL certificates.
 
-2. **Navegador**: Algunos navegadores pueden requerir que aceptes el certificado manualmente.
+2. **Browser**: Some browsers may require you to manually accept the certificate.
 
-3. **Firewall**: Asegúrate de que el puerto 7000 esté abierto en tu firewall local.
+3. **Firewall**: Make sure port 7000 is open in your local firewall.
 
-4. **MongoDB**: La conexión a MongoDB sigue siendo segura usando la cadena de conexión con SSL.
+4. **MongoDB**: The connection to MongoDB remains secure using the connection string with SSL.

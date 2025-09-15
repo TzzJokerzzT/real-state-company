@@ -1,6 +1,14 @@
 import { useMemo } from "react";
 import type { OptionProps, OptionItem } from "./types";
 
+/**
+ * Generic Option/Select component that can handle different types of data
+ * Supports both OptionItem objects and simple arrays with custom extractors
+ * 
+ * @template T - The type of the option values
+ * @param props - The component props
+ * @returns JSX select element with normalized options
+ */
 export const OptionComponent = <T = unknown,>({
   label,
   options,
@@ -13,10 +21,13 @@ export const OptionComponent = <T = unknown,>({
   getValue,
   getLabel,
 }: OptionProps<T>) => {
-  // Normalizar opciones a formato estándar
+  /**
+   * Normalizes options to standard format
+   * Converts simple arrays to OptionItem format using provided extractors
+   */
   const normalizedOptions = useMemo(() => {
     return options.map((option) => {
-      // Si es un objeto OptionItem, usarlo directamente
+      // If it's an OptionItem object, use it directly
       if (
         typeof option === "object" &&
         option !== null &&
@@ -26,7 +37,7 @@ export const OptionComponent = <T = unknown,>({
         return option as OptionItem<T>;
       }
 
-      // Si es un valor simple, crear OptionItem
+      // If it's a simple value, create OptionItem
       const optionValue = getValue ? getValue(option) : option;
       const optionLabel = getLabel ? getLabel(option) : String(option);
 
@@ -38,6 +49,9 @@ export const OptionComponent = <T = unknown,>({
     });
   }, [options, getValue, getLabel]);
 
+  /**
+   * Handles select change events and calls onChange with the selected value
+   */
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = normalizedOptions.find(
       (opt) => String(opt.value) === e.target.value

@@ -2,6 +2,13 @@ import React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import type { PaginationProps } from "./types"
 
+/**
+ * Pagination component for navigating through multiple pages of content
+ * Shows page numbers with ellipsis for large page counts and provides previous/next navigation
+ * 
+ * @param props - The pagination props
+ * @returns JSX pagination element or null if totalPages <= 1
+ */
 const Pagination = ({
   currentPage,
   totalPages,
@@ -10,6 +17,12 @@ const Pagination = ({
 }: PaginationProps) => {
   if (totalPages <= 1) return null
 
+  /**
+   * Calculates which page numbers to display with ellipsis for optimal UX
+   * Shows current page ± 2 pages, with ellipsis when there are gaps
+   * 
+   * @returns Array of page numbers and ellipsis strings to display
+   */
   const getVisiblePages = () => {
     const delta = 2
     const range = []

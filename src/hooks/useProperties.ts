@@ -4,10 +4,23 @@ import { usePropertyStore } from "../store/PropertyStore"
 import type { Pagination } from "../store/types"
 import type { Property, PropertyFilterDto } from "../types/Property"
 
+/**
+ * Custom hook for managing property-related operations
+ * Provides functions for fetching, creating, updating, and deleting properties
+ * Also handles pagination and filtering functionality
+ * 
+ * @returns Object containing property management functions and pagination state
+ */
 export const useProperties = () => {
   const { pagination, setProperties, setLoading, setError, setPagination } =
     usePropertyStore()
 
+  /**
+   * Fetches properties with optional filtering
+   * Resets pagination to first page
+   * 
+   * @param filter - Optional filter criteria for properties
+   */
   const fetchProperties = useCallback(
     async (filter: PropertyFilterDto = {}) => {
       setLoading(true)
@@ -39,6 +52,11 @@ export const useProperties = () => {
     []
   )
 
+  /**
+   * Searches properties with specific filter criteria
+   * 
+   * @param filter - Filter criteria for property search
+   */
   const searchProperties = useCallback(
     async (filter: PropertyFilterDto) => {
       setLoading(true)
@@ -70,6 +88,12 @@ export const useProperties = () => {
     [pagination.pageSize, setLoading, setError, setProperties, setPagination]
   )
 
+  /**
+   * Changes the current page of properties
+   * 
+   * @param page - Target page number
+   * @param currentFilter - Optional current filter to maintain during pagination
+   */
   const changePage = useCallback(
     async (page: number, currentFilter?: PropertyFilterDto) => {
       setLoading(true)
@@ -98,6 +122,12 @@ export const useProperties = () => {
     [pagination.pageSize, setLoading, setError, setProperties, setPagination]
   )
 
+  /**
+   * Retrieves a specific property by its ID
+   * 
+   * @param id - The unique identifier of the property
+   * @returns Promise resolving to the property or null if not found
+   */
   const getPropertyById = useCallback(
     async (id: string): Promise<Property | null> => {
       try {
@@ -113,6 +143,13 @@ export const useProperties = () => {
     [setError]
   )
 
+  /**
+   * Creates a new property and refreshes the current view
+   * 
+   * @param propertyData - Property data excluding auto-generated fields
+   * @returns Promise resolving to the created property
+   * @throws Error if creation fails
+   */
   const createProperty = useCallback(
     async (propertyData: Omit<Property, "id" | "createdAt" | "updatedAt">) => {
       try {
@@ -133,6 +170,14 @@ export const useProperties = () => {
     [fetchProperties, pagination.currentPage, pagination.pageSize, setError]
   )
 
+  /**
+   * Updates an existing property and refreshes the local state
+   * 
+   * @param id - The unique identifier of the property to update
+   * @param propertyData - Updated property data excluding auto-generated fields
+   * @returns Promise resolving to the updated property
+   * @throws Error if update fails
+   */
   const updateProperty = useCallback(
     async (
       id: string,
@@ -158,6 +203,12 @@ export const useProperties = () => {
     [setProperties, setError]
   )
 
+  /**
+   * Deletes a property and updates the local state
+   * 
+   * @param id - The unique identifier of the property to delete
+   * @throws Error if deletion fails
+   */
   const deleteProperty = useCallback(
     async (id: string) => {
       try {
