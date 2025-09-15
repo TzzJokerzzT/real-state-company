@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "id": "1",
+      "name": "Beautiful House",
+      "address": "123 Main St, City, State",
+      "price": 500000,
+      "image": "https://example.com/image1.jpg",
+      "idOwner": "owner123",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Modern Apartment",
+      "address": "456 Oak Ave, City, State",
+      "price": 350000,
+      "image": "https://example.com/image2.jpg",
+      "idOwner": "owner456",
+      "createdAt": "2024-01-02T00:00:00Z",
+      "updatedAt": "2024-01-02T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Luxury Villa",
+      "address": "789 Pine Rd, City, State",
+      "price": 1200000,
+      "image": "https://example.com/image3.jpg",
+      "idOwner": "owner789",
+      "createdAt": "2024-01-03T00:00:00Z",
+      "updatedAt": "2024-01-03T00:00:00Z"
+    }
+  ]
+}
