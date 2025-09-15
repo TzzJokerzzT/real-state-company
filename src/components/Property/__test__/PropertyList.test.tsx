@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { PropertyList } from "../PropertyList"
-import type { Property } from "@/types/Property"
+import "@testing-library/jest-dom"
 
 // Mock lucide-react icons
 vi.mock("lucide-react", () => ({
@@ -37,6 +37,17 @@ vi.mock("./PropertyCard", () => ({
     </div>
   )
 }))
+
+interface Property {
+  id: string
+  name: string
+  address: string
+  price: number
+  image?: string | null
+  idOwner: string
+  createdAt: string
+  updatedAt: string
+}
 
 describe("PropertyList", () => {
   const mockProperties: Property[] = [

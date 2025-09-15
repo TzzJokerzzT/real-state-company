@@ -130,7 +130,7 @@ describe("OptionComponent", () => {
         <OptionComponent
           label="Complex Options"
           options={complexOptions}
-          value={1}
+          value={complexOptions[0]}
           onChange={vi.fn()}
           getValue={item => item.id}
           getLabel={item => item.name}
@@ -151,7 +151,7 @@ describe("OptionComponent", () => {
         <OptionComponent
           label="Countries"
           options={mixedOptions}
-          value="US"
+          value={mixedOptions[0]}
           onChange={vi.fn()}
           getValue={item => item.code}
           getLabel={item => `${item.country} (${item.code})`}
@@ -222,8 +222,8 @@ describe("OptionComponent", () => {
           options={objectOptions}
           value={null}
           onChange={handleChange}
-          getValue={item => item.id}
-          getLabel={item => item.name}
+          getValue={item => item?.id ?? 0}
+          getLabel={item => item?.name ?? ""}
         />
       )
 

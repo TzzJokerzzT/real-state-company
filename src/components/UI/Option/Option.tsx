@@ -57,7 +57,7 @@ export const OptionComponent = <T = unknown,>({
       (opt) => String(opt.value) === e.target.value
     )?.value;
     if (selectedValue !== undefined) {
-      onChange(selectedValue);
+      onChange?.(selectedValue);
     }
   };
 
