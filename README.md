@@ -84,7 +84,7 @@ dotnet restore
 ```json
 {
   "DatabaseSettings": {
-    "ConnectionString": "mongodb://localhost:27017",
+    "ConnectionString": "mongodb+srv://admin:Skatextremepro1@cluster0.izm7fot.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "DatabaseName": "RealEstateDB",
     "PropertiesCollectionName": "Properties",
     "OwnersCollectionName": "Owners"
