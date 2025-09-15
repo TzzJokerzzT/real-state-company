@@ -85,7 +85,7 @@ dotnet restore
 {
   "DatabaseSettings": {
     "ConnectionString": "mongodb+srv://admin:Skatextremepro1@cluster0.izm7fot.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-    "DatabaseName": "RealEstateDB",
+    "DatabaseName": "real_state",
     "PropertiesCollectionName": "Properties",
     "OwnersCollectionName": "Owners"
   }
