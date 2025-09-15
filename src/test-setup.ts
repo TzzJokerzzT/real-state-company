@@ -9,8 +9,4 @@ global.jest = {
   resetAllMocks: vi.resetAllMocks,
   restoreAllMocks: vi.restoreAllMocks,
   spyOn: vi.spyOn,
-  mockImplementation: vi.mockImplementation,
-  mockReturnValue: vi.mockReturnValue,
-  mockResolvedValue: vi.mockResolvedValue,
-  mockRejectedValue: vi.mockRejectedValue,
 } as any;

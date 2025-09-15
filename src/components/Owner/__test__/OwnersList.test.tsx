@@ -44,7 +44,7 @@ const mockOwners: Owner[] = [
 const defaultStoreState = {
   owners: mockOwners,
   loading: false,
-  error: null,
+  error: null as string | null,
 }
 
 let mockStoreState = { ...defaultStoreState }

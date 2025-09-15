@@ -258,3 +258,4 @@ C:/Users/Alex Buelvas/Documents/real-state-company/backend/RealEstate.API/obj/De
 /home/alex-buelvas/Documents/GitHub/real-state-company/backend/RealEstate.API/obj/Debug/net8.0/RealEstate.API.pdb
 /home/alex-buelvas/Documents/GitHub/real-state-company/backend/RealEstate.API/obj/Debug/net8.0/RealEstate.API.genruntimeconfig.cache
 /home/alex-buelvas/Documents/GitHub/real-state-company/backend/RealEstate.API/obj/Debug/net8.0/ref/RealEstate.API.dll
+/home/alex-buelvas/Documents/GitHub/real-state-company/backend/RealEstate.API/obj/Debug/net8.0/RealEstate.API.sourcelink.json

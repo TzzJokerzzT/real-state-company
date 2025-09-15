@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { BrowserRouter } from "react-router-dom"
 import OwnerDetailsModal from "../OwnerDetailsModal"
-import type { OwnerDetailsModalProps } from "./types"
+import type { OwnerDetailsModalProps } from "../types"
 
 // Mock dependencies
 const mockNavigate = vi.fn()

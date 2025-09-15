@@ -34,7 +34,7 @@ export function HomeView() {
   }
 
   const handleViewDetails = useCallback((property: Property) => {
-    setSelectedProperty(property)
+    setSelectedProperty([property])
     setIsOpen(true)
   }, [])
 
@@ -48,7 +48,7 @@ export function HomeView() {
 
       {/* Properties Grid */}
       <PropertyList
-        properties={properties}
+        properties={properties ?? []}
         loading={loading}
         error={error}
         onViewDetails={handleViewDetails}
@@ -65,7 +65,7 @@ export function HomeView() {
       {/* Property Details Modal */}
       <PropertyDetails
         isOpen={isOpen}
-        property={selectedProperty}
+        property={selectedProperty ? selectedProperty[0] : null}
         onClose={handleCloseDetails}
       />
     </Layout>

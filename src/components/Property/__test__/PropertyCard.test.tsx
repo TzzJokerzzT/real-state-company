@@ -1,7 +1,7 @@
-import type { Property } from "@/types/Property"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import PropertyCard from "../PropertyCard"
+import "@testing-library/jest-dom"
 
 // Mock lucide-react icons
 vi.mock("lucide-react", () => ({
@@ -50,6 +50,17 @@ vi.mock("../../helpers/helper", () => ({
   )
 }))
 
+interface Property {
+  id: string
+  name: string
+  address: string
+  price: number
+  image: string | null
+  idOwner: string
+  createdAt: string
+  updatedAt: string
+}
+
 describe("PropertyCard", () => {
   const mockProperty: Property = {
     id: "1",
@@ -73,7 +84,7 @@ describe("PropertyCard", () => {
     onViewDetails?: (property: Property) => void
   ) => {
     return render(
-      <PropertyCard property={property} onViewDetails={onViewDetails} />
+      <PropertyCard property={property as any} onViewDetails={onViewDetails} />
     )
   }
 
